@@ -69,6 +69,7 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/triple-slash-reference': 'off',
+    '@typescript-eslint/promise-function-async': 'off',
     'react/jsx-max-props-per-line': ['error', {maximum: 3}],
     'react/function-component-definition': 'off',
     'react/require-default-props': 'warn',
