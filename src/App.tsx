@@ -12,7 +12,6 @@ function App() {
         </a>
         <a href="https://reactjs.org" target="_blank" rel="noreferrer" />
       </div>
-      <h1>Vite + React</h1>
       <div className="card">
         <button
           type="button"
