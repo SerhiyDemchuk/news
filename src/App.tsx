@@ -1,13 +1,17 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import './App.css';
-import { AppRouter } from '@/app/routes';
+import { useSelector } from 'react-redux';
+import { AppRouter } from '@/app/providers/Router';
+import { useUserActions } from '@/entities/User/model/slice/userSlice';
+import { getUserInited } from '@/entities/User';
 
 function App() {
-  return (
-    <Suspense fallback="">
-      <AppRouter />
-    </Suspense>
-  );
+  const { initAuthData } = useUserActions();
+  const inited = useSelector(getUserInited);
+  useEffect(() => {
+    initAuthData();
+  }, []);
+  return <Suspense fallback="">{inited && <AppRouter />}</Suspense>;
 }
 
 export default App;
