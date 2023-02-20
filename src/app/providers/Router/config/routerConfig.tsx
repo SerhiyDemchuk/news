@@ -3,10 +3,12 @@ import {
   getRouteMain,
   getRouteNews,
   getRouteProfile,
-} from '@/app/routes/config/routes';
+} from '@/app/providers/Router/config/routes';
+
 import { NewsPage } from '@/pages/NewsPage';
-import { ProfilePage } from '@/pages/ProfilePage';
 import { MainPage } from '@/pages/MainPage';
+import { ProfilePage } from '@/pages/ProfilePage';
+import { NotFoundPage } from '@/pages/NotFoundPage';
 
 type AppRoutesProps = RouteProps & {
   authOnly?: boolean;
@@ -36,6 +38,6 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   },
   [AppRoutes.NOT_FOUND]: {
     path: '*',
-    element: <div>Not found page</div>,
+    element: <NotFoundPage />,
   },
 };

@@ -1,9 +1,9 @@
 import { memo, Suspense, useCallback } from 'react';
 import { Route, Routes, type RouteProps } from 'react-router-dom';
 
-import { getRouteAuth } from '@/app/routes/config/routes';
-import { RequireAuth } from '@/app/routes/ui/RequireAuth';
-import { routeConfig } from '@/app/routes/config/routerConfig';
+import { getRouteAuth } from '@/app/providers/Router/config/routes';
+import { RequireAuth } from '@/app/providers/Router/ui/RequireAuth';
+import { routeConfig } from '@/app/providers/Router/config/routerConfig';
 
 import { AuthenticationPage } from '@/pages/AuthenticationPage';
 
