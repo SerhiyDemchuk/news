@@ -1,28 +1,29 @@
 import { memo, Suspense, useCallback } from 'react';
-import { Route, Routes, type RouteProps } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
-import { getRouteAuth } from '@/app/providers/Router/config/routes';
 import { RequireAuth } from '@/app/providers/Router/ui/RequireAuth';
-import { routeConfig } from '@/app/providers/Router/config/routerConfig';
-
-import { AuthenticationPage } from '@/pages/AuthenticationPage';
+import {
+  type AppRoutesProps,
+  routeConfig,
+} from '@/app/providers/Router/config/routerConfig';
 
 function AppRouter() {
-  const renderWithWrapper = useCallback((route: RouteProps) => {
+  const renderWithWrapper = useCallback((route: AppRoutesProps) => {
     const element = (
       <Suspense fallback={<div>Loading...</div>}>{route.element}</Suspense>
     );
-    return <Route key={route.path} path={route.path} element={element} />;
+    return (
+      <Route
+        key={route.path}
+        path={route.path}
+        element={
+          route.authOnly ? <RequireAuth>{element}</RequireAuth> : element
+        }
+      />
+    );
   }, []);
 
-  return (
-    <Routes>
-      <Route element={<RequireAuth />}>
-        {Object.values(routeConfig).map(renderWithWrapper)}
-      </Route>
-      <Route path={getRouteAuth()} element={<AuthenticationPage />} />
-    </Routes>
-  );
+  return <Routes>{Object.values(routeConfig).map(renderWithWrapper)}</Routes>;
 }
 
 export default memo(AppRouter);

@@ -9,12 +9,12 @@ import { type AxiosInstance } from 'axios';
 import { type UISchema } from '@/features/UI';
 import { type UserSchema } from '@/entities/User';
 import { type rtkApi } from '@/shared/api/rtkApi';
-import { type LoginSchema } from '@/features/Authentication/model/types/loginSchema';
+import { type AuthSchema } from '@/features/Authentication/model/types/authSchema';
 
 export interface StateSchema {
   user: UserSchema;
+  auth: AuthSchema;
   ui: UISchema;
-  login: LoginSchema;
   [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
   // Async reducers
