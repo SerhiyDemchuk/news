@@ -13,7 +13,7 @@ import {
   type StateSchema,
   type ThunkExtraArg,
 } from '@/app/providers/StoreProvider/config/StateSchema';
-import { loginReducer } from '@/features/Authentication/model/slice/loginSlice';
+import { authReducer } from '@/features/Authentication/model/slice/authSlice';
 
 export function createReduxStore(
   initialState?: StateSchema,
@@ -23,7 +23,7 @@ export function createReduxStore(
     ...asyncReducers,
     user: userReducer,
     ui: uiReducer,
-    login: loginReducer,
+    auth: authReducer,
     [rtkApi.reducerPath]: rtkApi.reducer,
   };
 

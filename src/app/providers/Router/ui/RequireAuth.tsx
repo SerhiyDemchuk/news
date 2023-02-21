@@ -1,14 +1,17 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getRouteAuth } from '@/app/providers/Router/config/routes';
-import { getUserInited } from '@/entities/User';
+import { getIsAuthenticated } from '@/features/Authentication/model/selectors/getIsAuthenticated';
 
-export function RequireAuth() {
+interface RequireAuthProps {
+  children: JSX.Element;
+}
+
+export const RequireAuth = ({ children }: RequireAuthProps) => {
   const location = useLocation();
+  const isAuthenticated = useSelector(getIsAuthenticated);
 
-  const inited = useSelector(getUserInited);
-
-  if (!inited) {
+  if (!isAuthenticated) {
     return (
       <Navigate
         replace
@@ -17,5 +20,5 @@ export function RequireAuth() {
       />
     );
   }
-  return <Outlet />;
-}
+  return children;
+};

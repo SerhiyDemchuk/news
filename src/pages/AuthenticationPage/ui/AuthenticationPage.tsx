@@ -1,28 +1,25 @@
 import { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Login } from '@/features/Authentication';
-import { getUserInited } from '@/entities/User';
+import { getIsAuthenticated } from '@/features/Authentication/model/selectors/getIsAuthenticated';
 
 interface AuthenticationPageProps {}
 
 const AuthenticationPage = memo((props: AuthenticationPageProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const inited = useSelector(getUserInited);
-  console.log('inited: ', inited);
+  const isAuthenticated = useSelector(getIsAuthenticated);
+  const location = useLocation();
+  const redirectPath = location.state?.path || '/';
   useEffect(() => {
-    if (inited) {
-      navigate('/');
+    if (isAuthenticated) {
+      navigate(redirectPath, { replace: true });
     }
-  }, [navigate, inited]);
+  }, [navigate, isAuthenticated]);
 
-  return (
-    <div>
-      <Login />
-    </div>
-  );
+  return <Login />;
 });
 
 export default AuthenticationPage;
