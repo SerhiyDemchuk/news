@@ -4,12 +4,13 @@ import { useTranslation } from 'react-i18next';
 interface MainPageProps {}
 
 const MainPage = memo((props: MainPageProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('main');
 
   const [count, setCount] = useState(0);
 
   return (
     <div className="App">
+      <h1>{t('MainPage')}</h1>
       <div>
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src="/vite.svg" className="logo" alt="Vite logo" />
