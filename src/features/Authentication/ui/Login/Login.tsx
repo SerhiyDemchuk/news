@@ -15,10 +15,8 @@ import { VALID_AUTH_DATA } from '@/shared/const/localstorage';
 import { useAuthActions } from '@/features/Authentication/model/slice/authSlice';
 import { type Credentials } from '@/features/Authentication/model/types/authSchema';
 
-interface LoginProps {}
-
-export const Login = memo((props: LoginProps) => {
-  const { t } = useTranslation();
+export const Login = memo(() => {
+  const { t } = useTranslation('authentication');
   const { login } = useAuthActions();
   const [credentials, setCredentials] = useState<Credentials>({
     username: '',
@@ -52,9 +50,17 @@ export const Login = memo((props: LoginProps) => {
 
   return (
     <LoginForm onSubmit={handleSubmit}>
-      <Input type="text" onChange={handleUsername} placeholder="Username" />
-      <Input type="password" onChange={handlePassword} placeholder="Password" />
-      <Button type="submit" text="Log In" />
+      <Input
+        type="text"
+        onChange={handleUsername}
+        placeholder={t('Username')}
+      />
+      <Input
+        type="password"
+        onChange={handlePassword}
+        placeholder={t('Password')}
+      />
+      <Button type="submit" text={t('Log In')} />
     </LoginForm>
   );
 });

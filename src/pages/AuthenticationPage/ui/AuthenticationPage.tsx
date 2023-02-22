@@ -1,5 +1,4 @@
 import { memo, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Login } from '@/features/Authentication';
@@ -8,7 +7,6 @@ import { getIsAuthenticated } from '@/features/Authentication/model/selectors/ge
 interface AuthenticationPageProps {}
 
 const AuthenticationPage = memo((props: AuthenticationPageProps) => {
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const isAuthenticated = useSelector(getIsAuthenticated);
   const location = useLocation();
